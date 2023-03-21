@@ -1,5 +1,3 @@
-re is an example of how you can write a function that prints the sign of a number:
-
 #include "main.h"
 
 /**
