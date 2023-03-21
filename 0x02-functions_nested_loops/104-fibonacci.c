@@ -1,17 +1,15 @@
 #include <stdio.h>
 
 /**
- * main - finds and prints the first 98 Fibonacci numbers
+ * main - prints the first 98 Fibonacci numbers
  *
- * Return: Always 0
+ * Return: 0
  */
 int main(void)
 {
 	int i;
-	unsigned long int a, b, c;
+	unsigned long int a = 1, b = 2, c;
 
-	a = 1;
-	b = 2;
 	printf("%lu, %lu", a, b);
 	for (i = 0; i < 96; i++)
 	{
@@ -21,6 +19,6 @@ int main(void)
 		b = c;
 	}
 	printf("\n");
-
+	
 	return (0);
 }
