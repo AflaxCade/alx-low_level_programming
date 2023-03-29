@@ -1,25 +1,34 @@
 #include "main.h"
 
 /**
- * cap_string - capitalizes all words of a string
- * @str: string to capitalize
+ * cap_string - capitalizes chars in a string following a separator
  *
- * Return: pointer to the resulting string
+ * @c: character string pointer
+ * Return: char pointer
  */
-char *cap_string(char *str)
+char *cap_string(char *c)
 {
-	int i;
+	int i = 0, j,
+	sep[] = {32, '\t', 11,  '\n', 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
 
-	for (i = 0; str[i] != '\0'; i++)
+	if (c[0] > 96 && c[0] < 123)
+		c[0] -= 32;
+	while (c[i] != '\0')
 	{
-		if (i == 0 || str[i - 1] == '\t' || str[i - 1] == '\n' || str[i - 1] == ',' || str[i - 1] == ';' || str[i - 1] == '.' || str[i - 1] == '!' || str[i - 1] == '?' || str[i - 1] == '"' || str[i - 1] == '(' || str[i - 1] == ')' || str[i - 1] == '{' || str[i - 1] == '}')
+		if (c[i] > 96 && c[i] < 123)
 		{
-			if (str[i] >= 'a' && str[i] <= 'z')
+			j = 0;
+			while (j < 14)
 			{
-				str[i] = str[i] - 32;
+				if (c[i - 1] == sep[j])
+				{
+					c[i] -= 32;
+					break;
+				}
+				j++;
 			}
 		}
+		i++;
 	}
-
-	return (str);
+	return (c);
 }
