@@ -10,45 +10,39 @@ include "main.h"
  * Return: address of r or 0
  */
 
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int i, j, k, l, m, n;
 
-	while (*(n1 + i) != '\0')
-		i++;
-	while (*(n2 + j) != '\0')
-		j++;
-	i--;
-	j--;
-	if (j >= size_r || i >= size_r)
+	for (i = 0; n1[i]; i++)
+		;
+	for (j = 0; n2[j]; j++)
+		;
+	if (i > size_r || j > size_r)
 		return (0);
-	while (j >= 0 || i >= 0 || overflow == 1)
+	m = 0;
+	for (i -= 1, j -= 1, k = 0; k < size_r - 1; i--, j--, k++)
 	{
-		if (i < 0)
-			val1 = 0;
-		else
-			val1 = *(n1 + i) - '0';
-		if (j < 0)
-			val2 = 0;
-		else
-			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow;
-		if (temp_tot >= 10)
-			overflow = 1;
-		else
-			overflow = 0;
-		if (digits >= (size_r - 1))
-			return (0);
-		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
-		i--;
+		n = m;
+		if (i >= 0)
+			n += n1[i] - '0';
+		if (j >= 0)
+			n += n2[j] - '0';
+		if (i < 0 && j < 0 && n == 0)
+		{
+			break;
+		}
+		m = n / 10;
+		r[k] = n % 10 + '0';
 	}
-	if (digits == size_r)
+	r[k] = '\0';
+	if (i >= 0 || j >= 0 || m)
 		return (0);
-	*(r + digits) = '\0';
-	rev_string(r);
+	for (k -= 1, l = 0; l < k; k--, l++)
+	{
+		m = r[k];
+		r[k] = r[l];
+		r[l] = m;
+	}
 	return (r);
 }
