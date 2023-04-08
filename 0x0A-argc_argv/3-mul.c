@@ -10,7 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int x, y;
+	int m1, m2;
 
 	if (argc != 3)
 	{
@@ -19,6 +19,6 @@ int main(int argc, char *argv[])
 	}
 	m1 = atoi(argv[1]);
 	m2 = atoi(argv[2]);
-	printf("%d\n", x * y);
+	printf("%d\n", m1 * m2);
 	return (0);
 }
