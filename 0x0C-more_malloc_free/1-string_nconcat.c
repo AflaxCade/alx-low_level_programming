@@ -3,14 +3,12 @@
 #include <string.h>
 
 /**
- * string_nconcat - concatenates two strings
- * @s1: first string
- * @s2: second string
- * @n: number of bytes to concatenate from s2
+ * *string_nconcat - concatenates 2 strings
+ * @s1: pointer to first string
+ * @s2: pointer to second string
+ * @n: number of bytes to use from s2
  *
- * Return: pointer to the newly allocated string
- *         containing s1, followed by the first n bytes of s2, and null-terminated
- *         or NULL if malloc fails
+ * Return: pointer to newly created string, else NULL if failure occurs
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
