@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
-#include "dog.h"
+
+typedef struct dog dog_t;
 
 /**
  * new_dog - creates a new dog_t struct and returns a pointer to it
@@ -12,7 +13,9 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog = malloc(sizeof(dog_t));
+	dog_t *new_dog;
+	
+	new_dog = malloc(sizeof(dog_t));
 	if (new_dog == NULL)
 	{
 		return (NULL);
@@ -24,6 +27,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(new_dog);
 		return (NULL);
 	}
+
 	strcpy(new_dog->name, name);
 
 	new_dog->age = age;
@@ -35,6 +39,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(new_dog);
 		return (NULL);
 	}
+
 	strcpy(new_dog->owner, owner);
 
 	return (new_dog);
