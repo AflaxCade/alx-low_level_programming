@@ -2,36 +2,37 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the opcodes of its own main function
- * @argc: Number of command-line arguments
- * @argv: Array of command-line arguments
- *
- * Return: 0 on success, 1 if incorrect number of arguments, 2 if negative num_bytes
- */
-int main(int argc, char *argv[])
+* main - check code for prject
+* @argc: argument cpunter
+* @argv: arguent vector
+*
+* Return: Always 0
+*/
+
+int main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		printf("Error\n");
-		return (1);
-	}
+char *opc = (char *) main;
+int i, numbytes;
 
-	int num_bytes = atoi(argv[1]);
+if (argc != 2)
+{
+	printf("Error\n");
+	exit(1);
+}
 
-	if (num_bytes < 0)
-	{
-		printf("Error\n");
-		return (2);
-	}
+numbytes = atoi(argv[1]);
 
-	unsigned char *opcode = (unsigned char *) main;
-
-	for (int i = 0; i < num_bytes; i++)
-	{
-		printf("%02x", *(opcode + i));
-	}
-
-	printf("\n");
-
-	return (0);
+if (numbytes < 0)
+{
+	printf("Error\n");
+	exit(2);
+}
+for (i = 0; i < numbytes; i++)
+{
+	printf("%02x", opc[i] & 0xFF);
+	if (i != numbytes - 1)
+		printf(" ");
+}
+printf("\n");
+return (0);
 }
