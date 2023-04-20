@@ -3,64 +3,48 @@
 #include <stdio.h>
 
 /**
- * print_all - Prints anything.
- *
- * @format: A list of types of arguments passed to the function.
- *          c: char
- *          i: integer
- *          f: float
- *          s: char * (if the string is NULL, print (nil) instead)
- *          any other char should be ignored.
- *
- * Return: void.
+ * print_all - prints anything
+ * @format: list of types of arguments passed to the function
  */
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	unsigned int i = 0;
-	char *str;
-	char *sep = "";
+	int i = 0;
+	char *str, *sep = "";
 
-	va_start(args, format);
+	va_list list;
 
-	while (format && format[i])
+	va_start(list, format);
+
+	if (format)
 	{
-		switch (format[i])
+		while (format[i])
 		{
-			case 'c':
+			switch (format[i])
 			{
-				char c = va_arg(args, int);
-				printf("%s%c", sep, c);
-				break;
-			}
-			case 'i':
-			{
-				int num = va_arg(args, int);
-				printf("%s%d", sep, num);
-				break;
-			}
-			case 'f':
-			{
-				double fnum = va_arg(args, double);
-				printf("%s%f", sep, fnum);
-				break;
-			}
-			case 's':
-			{
-				str = va_arg(args, char *);
-				if (str == NULL)
-				{
-					printf("%s(nil)", sep);
+				case 'c':
+					printf("%s%c", sep, va_arg(list, int));
 					break;
-				}
-				printf("%s%s", sep, str);
-				break;
+				case 'i':
+					printf("%s%d", sep, va_arg(list, int));
+					break;
+				case 'f':
+					printf("%s%f", sep, va_arg(list, double));
+					break;
+				case 's':
+					str = va_arg(list, char *);
+					if (!str)
+						str = "(nil)";
+					printf("%s%s", sep, str);
+					break;
+				default:
+					i++;
+					continue;
 			}
+			sep = ", ";
+			i++;
 		}
-		sep = ", ";
-		i++;
 	}
 
-	va_end(args);
 	printf("\n");
+	va_end(list);
 }
