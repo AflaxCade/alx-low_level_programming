@@ -1,21 +1,15 @@
-section .data
-    message db "Hello, Holberton", 10, 0
+SECTION .data
+msg:	db "Hello, Holberton", 0
+fmt:	db "%s", 10, 0
 
-section .text
-    global main
-
+	SECTION .text
+	extern printf
+	global main
 main:
-    ; Set up stack frame
-    push rbp
-    mov rbp, rsp
+	mov esi, msg
+	mov edi, fmt
+	mov eax, 0
+	call printf
 
-    ; Call printf to print message
-    mov rdi, message
-    mov rax, 0
-    call printf
-
-    ; Clean up and exit
-    mov rsp, rbp
-    pop rbp
-    xor eax, eax
-    ret
+	mov eax, 0
+	ret
